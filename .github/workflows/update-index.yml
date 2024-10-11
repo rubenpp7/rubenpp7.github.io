@@ -24,7 +24,7 @@ jobs:
     - name: Install system dependencies for sf
       run: |
         sudo apt-get update
-        sudo apt-get install -y libgeos-dev libproj-dev gdal-bin libgdal-dev
+        sudo apt-get install -y libgeos-dev libproj-dev gdal-bin libgdal-dev libudunits2-dev
 
     - name: Install remotes and R dependencies for Divewatchr
       env:
