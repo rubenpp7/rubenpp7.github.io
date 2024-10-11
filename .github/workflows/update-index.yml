@@ -23,8 +23,12 @@ jobs:
 
     - name: Install system dependencies for sf
       run: |
-        sudo apt-get update
-        sudo apt-get install -y libgeos-dev libproj-dev gdal-bin libgdal-dev libudunits2-dev
+        sudo apt-get update && sudo apt-get install -y libgeos-dev libproj-dev gdal-bin libgdal-dev libudunits2-dev
+        
+    - name: Set up Google OAuth token
+      run: |
+        mkdir -p ~/.config/gcloud/
+        echo "${{ secrets.GOOGLE_OAUTH_TOKEN_BASE64 }}" > ~/.config/gcloud/google-oauth-token.rds
 
     - name: Install remotes and R dependencies for Divewatchr
       env:
@@ -50,7 +54,7 @@ jobs:
     - name: Rename output.html to index.html
       run: |
         if [ -f "overview.html" ]; then
-          mv overview.html index.html
+          mv -f overview.html index.html
         fi
 
     - name: Commit changes
