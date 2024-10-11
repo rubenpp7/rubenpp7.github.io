@@ -28,7 +28,7 @@ jobs:
         # Install remotes if it's not installed yet
         R -e 'if (!requireNamespace("remotes", quietly = TRUE)) install.packages("remotes")'
         # Install the R package from Divewatchr
-        R -e 'remotes::install_github("rubenpp7/divewatchr", auth_token = Sys.getenv("PAT_GITHUB"))'
+        R -e 'remotes::install_github("rubenpp7/divewatchr")'
 
     - name: Run R function from Divewatchr
       run: |
