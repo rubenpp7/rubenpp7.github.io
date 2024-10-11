@@ -4,6 +4,9 @@ on:
   schedule:
     # Run once every 5 minutes (GitHub Actions' minimum interval)
     - cron: "*/5 * * * *"
+  push:
+    branches: 
+    - master # Trigger the workflow on push to the main branch
 
 jobs:
   update-index:
@@ -13,7 +16,7 @@ jobs:
     - name: Checkout rubenpp7.github.io repo
       uses: actions/checkout@v4
       with:
-        ref: main
+        ref: master
 
     - name: Set up R environment
       uses: r-lib/actions/setup-r@v2
