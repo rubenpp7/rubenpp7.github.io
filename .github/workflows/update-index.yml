@@ -1,9 +1,9 @@
 name: Update index.html
 
 on:
-  schedule:
+  #schedule:
     # Run once every 5 minutes (GitHub Actions' minimum interval)
-    - cron: "*/5 * * * *"
+   # - cron: "*/5 * * * *"
   push:
     branches: 
     - master # Trigger the workflow on push to the main branch
