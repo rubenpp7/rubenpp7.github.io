@@ -25,12 +25,6 @@ jobs:
       run: |
         sudo apt-get update && sudo apt-get install -y libgeos-dev libproj-dev gdal-bin libgdal-dev libudunits2-dev
         
-    - name: Set up Google OAuth token
-      run: |
-        mkdir -p ~/.config/gcloud/
-        echo "${{ secrets.GOOGLE_OAUTH_TOKEN_BASE64 }}" | base64 --decode > ~/.config/gcloud/google-oauth-token.rds
-
-
     - name: Install remotes and R dependencies for Divewatchr
       env:
         GITHUB_PAT: ${{ secrets.PAT_GITHUB }}  # Use your PAT from GitHub Secrets
@@ -42,8 +36,10 @@ jobs:
         # Install the Divewatchr package
         R -e 'remotes::install_github("rubenpp7/divewatchr")'
 
-    - name: Run R function from Divewatchr
+    - name: Set up Google OAuth token & Run R function from Divewatchr
       run: |
+        mkdir -p ~/.config/gcloud/
+        echo "${{ secrets.GOOGLE_OAUTH_TOKEN_BASE64 }}" | base64 --decode > ~/.config/gcloud/google-oauth-token.rds
         Rscript -e 'library(divewatchr); divewatch(data = "1qO7_0K1R-4i_MSgtT3zAYbZfxBmPMgQWAi7OmWmb1-M")'
 
     - name: Rename old index.html
