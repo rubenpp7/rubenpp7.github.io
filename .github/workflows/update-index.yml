@@ -52,6 +52,7 @@ jobs:
         fi
         cd ~
         Rscript -e 'library(divewatchr); divewatch(data = "1qO7_0K1R-4i_MSgtT3zAYbZfxBmPMgQWAi7OmWmb1-M")'
+        ls -R
         mv /home/runner/work/rubenpp7.github.io/rubenpp7.github.io/overview.html .
 
     - name: Rename old index.html
