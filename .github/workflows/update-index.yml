@@ -40,6 +40,7 @@ jobs:
       run: |
         mkdir -p ~/.config/gcloud/
         pwd
+        ls
         echo "${{ secrets.GOOGLE_OAUTH_TOKEN_BASE64 }}" | base64 --decode > ~/.config/gcloud/google-oauth-token.rds
         if [ -f ~/.config/gcloud/google-oauth-token.rds ]; then
           echo "Token file exists."
