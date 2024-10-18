@@ -39,7 +39,13 @@ jobs:
     - name: Set up Google OAuth token & Run R function from Divewatchr
       run: |
         mkdir -p ~/.config/gcloud/
+        pwd
         echo "${{ secrets.GOOGLE_OAUTH_TOKEN_BASE64 }}" | base64 --decode > ~/.config/gcloud/google-oauth-token.rds
+        if [ -f ~/.config/gcloud/google-oauth-token.rds ]; then
+          echo "Token file exists."
+        else
+          echo "Token file is missing!" && exit 1
+        fi
         Rscript -e 'library(divewatchr); divewatch(data = "1qO7_0K1R-4i_MSgtT3zAYbZfxBmPMgQWAi7OmWmb1-M")'
 
     - name: Rename old index.html
