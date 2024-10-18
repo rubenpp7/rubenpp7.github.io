@@ -47,6 +47,7 @@ jobs:
         else
           echo "Token file is missing!" && exit 1
         fi
+        cd ~
         Rscript -e 'library(divewatchr); divewatch(data = "1qO7_0K1R-4i_MSgtT3zAYbZfxBmPMgQWAi7OmWmb1-M")'
 
     - name: Rename old index.html
